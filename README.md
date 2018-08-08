@@ -2,7 +2,7 @@
 
 ## Project setup
 ```
-npm install
+npm install --only=production
 ```
 
 ## Project START
@@ -27,8 +27,8 @@ npm run build
 npm run lint
 ```
 
-implement simple REST API + webinterface in Veu.js
-
+#### Task: implement simple REST API + web interface in Vue.js
+```
 Backend:
 The server in NodeS providing REST API - CRUD for user management
 DB is not required (data could be stored in memory)
@@ -41,4 +41,4 @@ adding new users
 editing existing users
 password change
 soft delete
-
+```
