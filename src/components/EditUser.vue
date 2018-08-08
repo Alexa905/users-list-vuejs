@@ -16,7 +16,6 @@
                     <button v-on:click.prevent="save" v-bind:disabled="!user.name">Save</button>
                     <button v-on:click.prevent="cancel">Cancel</button>
                 </div>
-
             </fieldset>
         </form>
     </div>
