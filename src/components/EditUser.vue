@@ -3,15 +3,20 @@
         <form>
             <fieldset>
                 <legend>Edit user</legend>
-                <p>Name<sub>*</sub>: <input required v-model="user.name" type="text"/><br></p>
-                <p>Email: <input v-model="user.email" type="email"/><br></p>
-                <p>Country: <input v-model="user.country" type="text"/><br></p>
-                <p>Date of birth: <input v-model="user.birthday" type="text"/></p>
-                <p>Password: <input v-model="user.password" type="password"/></p>
-                <p>Notes: <textarea noresize v-model="user.notes"></textarea></p>
-                <p> Superuser: <input v-model="user.isSuperUser" type="checkbox"/></p>
-                <button v-on:click.prevent="save" v-bind:disabled="!user.name">Save</button>
-                <button v-on:click.prevent="cancel">Cancel</button>
+                <div class="form-content">
+                    <p>Name<sub>*</sub>: <input required v-model="user.name" type="text"/><br></p>
+                    <p>Email: <input v-model="user.email" type="email"/><br></p>
+                    <p>Country: <input v-model="user.country" type="text"/><br></p>
+                    <p>Date of birth: <input v-model="user.birthday" type="text"/></p>
+                    <p>Password: <input v-model="user.password" type="password"/></p>
+                    <p> Superuser: <input v-model="user.isSuperUser" type="checkbox"/></p>
+                    <p>Notes: <textarea noresize v-model="user.notes"></textarea></p>
+                </div>
+                <div class="form-footer">
+                    <button v-on:click.prevent="save" v-bind:disabled="!user.name">Save</button>
+                    <button v-on:click.prevent="cancel">Cancel</button>
+                </div>
+
             </fieldset>
         </form>
     </div>
@@ -27,7 +32,7 @@
         initialState: Object.assign({}, this.user)
       };
     },
-    methods:{
+    methods: {
       cancel(){
         this.user = Object.assign(this.user, this.initialState);
         this.switchMode();
@@ -45,16 +50,36 @@
         width: 80%;
         border: 1px solid black;
         text-align: left;
-        padding: 20px;
         margin: 0 auto 20px auto;
         background: ghostwhite;
     }
-    fieldset{
+
+    fieldset {
         border: none;
+        padding: 0;
+        margin: 0;
     }
-    legend{
+
+    legend {
         font-size: 16px;
         font-weight: bold;
+        color: #42b983;
+        padding: 10px 0;
+        display: block;
+        width: 100%;
+        margin: 0;
+        border-bottom: 1px solid #5e5e5e;
+        text-align: center;
+    }
+
+    .form-content {
+        padding: 20px;
+    }
+
+    .form-footer {
+        border-top: 1px solid #5e5e5e;
+        padding: 12px 0;
+        text-align: center;
     }
 
     p {

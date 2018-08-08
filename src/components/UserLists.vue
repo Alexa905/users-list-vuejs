@@ -1,23 +1,35 @@
 <template>
-    <ul class="user-list">
-        <li v-for="user in users" :key="user.id">
-            <router-link :to="{ path: `./user/${user.id}` }">
-                <p class="name"><b>{{ user.name}}</b></p>
-                <p>country: <b>{{ user.country || "-"}}</b></p>
-                <p>date of birth: <b>{{ user.birthday || "-"}}</b></p>
-                <p>superuser: <b>{{ user.isSuperUser ? 'yes' : "no"}}</b></p>
-            </router-link>
-        </li>
-    </ul>
-
+    <div>
+        <input class="input-search" type="search" v-model="search" placeholder="Search user by name">
+        <ul class="user-list">
+            <li v-for="user in filteredUsers" :key="user.id">
+                <router-link :to="{ path: `./user/${user.id}` }">
+                    <p class="name"><b>{{ user.name}}</b></p>
+                    <p>country: <b>{{ user.country || "-"}}</b></p>
+                    <p>date of birth: <b>{{ user.birthday || "-"}}</b></p>
+                    <p>superuser: <b>{{ user.isSuperUser ? 'yes' : "no"}}</b></p>
+                </router-link>
+            </li>
+        </ul>
+    </div>
 </template>
 
 
 <script>
-export default {
-  name: 'UserLists',
-  props: ['users'],
-};
+  export default {
+    name: 'UserLists',
+    props: ['users'],
+    data(){
+      return {
+        search: ''
+      }
+    },
+    computed: {
+      filteredUsers: function () {
+        return this.users.filter(user => user.name.match(this.search))
+      }
+    }
+  };
 </script>
 
 <style scoped>
@@ -32,7 +44,7 @@ export default {
         flex-wrap: wrap;
     }
 
-    .name{
+    .name {
         color: white;
         height: 30px;
         line-height: 30px;
@@ -42,11 +54,27 @@ export default {
         padding: 0 10px;
     }
 
+    .input-search{
+        width: 30%;
+        height: 30px;
+        outline: none;
+        box-shadow: none;
+        border: 1px solid #5e5e5e;
+        padding: 0 10px;
+        top: -15px;
+        position: relative;
+        font-size: 14px;
+        background: rgba(255,255,255,.5);
+        display: block;
+        margin-left: 20px;
+        border-radius: 3px;
+    }
+
     li {
         width: 30%;
         box-shadow: 0 0 3px 1px rgba(0, 0, 0, .1);
         text-align: left;
-        margin: 0 10px 20px 20px;
+        margin: 0 10px 25px 20px;
         background: #ffe8c7;
         border-radius: 2px;
     }
@@ -63,7 +91,7 @@ export default {
         background: #fffe8d;
     }
 
-    li:last-child{
+    li:last-child {
         background: #adffbf;
     }
 

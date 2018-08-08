@@ -1,6 +1,7 @@
 <template>
     <div class="user-card">
-        <div>
+        <h3>User card</h3>
+        <div class="user-card-info">
             <p>Name: <b>{{ user.name}}</b></p>
             <p>Country: <b>{{ user.country || "-"}}</b></p>
             <p>Email: <b>{{ user.email || "-"}}</b></p>
@@ -9,18 +10,20 @@
             <p> Superuser: <b>{{user.isSuperUser ? 'yes' : 'no'}}</b></p>
             <p>Notes: <b>{{ user.notes || "-"}}</b></p>
         </div>
-        <button v-on:click.prevent="deleteUser">Delete User</button>
-        <button v-on:click="switchMode">Edit User</button>
+        <div class="user-card-footer">
+            <button v-on:click.prevent="deleteUser">Delete User</button>
+            <button v-on:click="switchMode">Edit User</button>
+        </div>
     </div>
 
 </template>
 
 <script>
-export default {
-  name: 'UserCard',
-  props: ['user', 'switchMode', 'deleteUser'],
+  export default {
+    name: 'UserCard',
+    props: ['user', 'switchMode', 'deleteUser'],
 
-};
+  };
 </script>
 
 <style scoped>
@@ -28,13 +31,24 @@ export default {
         width: 80%;
         border: 1px solid black;
         text-align: left;
-        padding: 20px;
         margin: 0 auto 20px auto;
         background: ghostwhite;
     }
 
     h3 {
-        margin: 40px 0 0;
+        color: #42b983;
+        padding: 10px 0;
+        margin: 0;
+        border-bottom: 1px solid #5e5e5e;
+        text-align: center;
+    }
+    .user-card-info{
+        padding: 20px;
+    }
+    .user-card-footer{
+        border-top: 1px solid #5e5e5e;
+        padding: 12px 0;
+        text-align: center;
     }
 
     ul {
@@ -56,7 +70,7 @@ export default {
     button {
         background: white;
         border-radius: 2px;
-        margin-right: 10px;
+        margin: 0 10px;
         border: 1px solid #42b983;
         cursor: pointer;
         min-width: 70px;
