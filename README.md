@@ -42,3 +42,6 @@ editing existing users
 password change
 soft delete
 ```
+
+Docker:
+docker-compose up --build
